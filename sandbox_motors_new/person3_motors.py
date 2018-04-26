@@ -1,9 +1,9 @@
 """
 Functions for TURNING the robot LEFT and RIGHT.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
+Authors: David Fisher, David Mutchler and Zack Watson.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implment turn_left_seconds, then the relevant part of the test function.
+# TODO: 2. Implement turn_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for turn_left_by_time.
 #   Then repeat for turn_left_by_encoders.
