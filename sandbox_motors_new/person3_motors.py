@@ -1,13 +1,13 @@
 """
 Functions for TURNING the robot LEFT and RIGHT.
 Authors: David Fisher, David Mutchler and Zack Watson.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implement turn_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
-#   Then repeat for turn_left_by_time.
-#   Then repeat for turn_left_by_encoders.
-#   Then repeat for the turn_right functions.
+#          Then repeat for turn_left_by_time.
+#          Then repeat for turn_left_by_encoders.
+#          Then repeat for the turn_right functions.
 
 import ev3dev.ev3 as ev3
 import time
@@ -28,6 +28,77 @@ def test_turn_left_turn_right():
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
 
+    print('Testing turn_left_seconds')
+    print()
+
+    while True:
+        time_s = float(input("Enter a time to turn left (seconds): "))
+        if time_s == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100%): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_left_seconds(time_s, speed_percent, stop_act)
+
+    print()
+    print('Testing turn_left_by_time')
+    print()
+
+    while True:
+        degrees = float(input("Enter degrees to turn left: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_left_by_time(degrees, speed_percent, stop_act)
+
+    print()
+    print('Testing turn_left_by_encoders')
+    print()
+
+    while True:
+        degrees = float(input("Enter degrees to turn left: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_left_by_encoders(degrees, speed_percent, stop_act)
+
+    print()
+    print('Testing turn_right_seconds')
+    print()
+
+    while True:
+        time_s = float(input("Enter a time to turn right (seconds): "))
+        if time_s == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_right_seconds(degrees, speed_percent, stop_act)
+
+    print()
+    print('Testing turn_right_by_time')
+    print()
+
+    while True:
+        degrees = float(input("Enter degrees to turn right: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_right_by_time(degrees, speed_percent, stop_act)
+
+    print()
+    print('Testing turn_right_by_encoders')
+    print()
+
+    while True:
+        degrees = float(input("Enter degrees to turn right: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        turn_right_by_encoders(degrees, speed_percent, stop_act)
+
 
 def turn_left_seconds(seconds, speed, stop_action):
     """
@@ -35,6 +106,18 @@ def turn_left_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed turn_right) and 100 (full speed turn_left).
     Uses the given stop_action.
     """
+
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+
+    right_motor.run_forever(speed_sp=speed)
+    time.sleep(seconds)
+    right_motor.stop(stop_action=stop_action)
 
 
 def turn_left_by_time(degrees, speed, stop_action):
@@ -48,6 +131,18 @@ def turn_left_by_time(degrees, speed, stop_action):
       3. Stop moving.
     """
 
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+
+    right_motor.run_forever(speed_sp=speed)
+    time.sleep(degrees)
+    right_motor.stop(stop_action=stop_action)
+
 
 def turn_left_by_encoders(degrees, speed, stop_action):
     """
@@ -58,17 +153,35 @@ def turn_left_by_encoders(degrees, speed, stop_action):
       2. Move until the computed number of degrees is reached.
     """
 
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
-def turn_right_seconds(seconds, speed, stop_action=):
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+    
+    right_motor.run_forever(speed_sp=speed)
+    time.sleep(degrees)
+    right_motor.stop(stop_action=stop_action)
+
+
+def turn_right_seconds(seconds, speed, stop_action):
     """ Calls turn_left_seconds with negative speeds to achieve turn_right motion. """
 
+    turn_left_seconds(seconds, -speed, stop_action)
 
-def turn_right_by_time(degrees, speed, stop_action=):
+
+def turn_right_by_time(degrees, speed, stop_action):
     """ Calls turn_left_by_time with negative speeds to achieve turn_right motion. """
 
+    turn_left_by_time(degrees, -speed, stop_action)
 
-def turn_right_by_encoders(degrees, speed, stop_action=):
+
+def turn_right_by_encoders(degrees, speed, stop_action):
     """ Calls turn_left_by_encoders with negative speeds to achieve turn_right motion. """
+
+    turn_left_by_encoders(degrees, -speed, stop_action)
 
 
 test_turn_left_turn_right()
