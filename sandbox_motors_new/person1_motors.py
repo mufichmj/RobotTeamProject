@@ -46,7 +46,7 @@ def forward_seconds(seconds, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed*8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep(5.0)
+    time.sleep(seconds)
     left_motor.stop()
     right_motor.stop()
 
