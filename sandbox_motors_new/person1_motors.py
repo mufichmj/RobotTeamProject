@@ -28,6 +28,7 @@ def test_forward_backward():
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
     forward_seconds(2, 50, "brake")
+    forward_by_time(8, 50, "brake")
 
 
 def forward_seconds(seconds, speed, stop_action):
@@ -61,6 +62,16 @@ def forward_by_time(inches, speed, stop_action):
       2. Sleep for the computed number of seconds.
       3. Stop moving.
     """
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    assert left_motor.connected
+    assert right_motor.connected
+
+    left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
+    right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
+    time.sleep(5)
+    left_motor.stop()
+    right_motor.stop()
 
 
 def forward_by_encoders(inches, speed, stop_action):
@@ -71,18 +82,30 @@ def forward_by_encoders(inches, speed, stop_action):
       1. Compute the number of degrees the wheels should spin to achieve the desired distance.
       2. Move until the computed number of degrees is reached.
     """
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    assert left_motor.connected
+    assert right_motor.connected
 
+    left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
+    right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
+    time.sleep((inches * 90) / 400)
+    left_motor.stop()
+    right_motor.stop()
 
 def backward_seconds(seconds, speed, stop_action):
     """ Calls forward_seconds with negative speeds to achieve backward motion. """
 
+    forward_seconds(seconds, -speed, stop_action)
 
 def backward_by_time(inches, speed, stop_action):
     """ Calls forward_by_time with negative speeds to achieve backward motion. """
 
+    forward_by_time(inches, -speed, stop_action)
 
 def backward_by_encoders(inches, speed, stop_action):
     """ Calls forward_by_encoders with negative speeds to achieve backward motion. """
 
+    forward_by_encoders(inches, -speed, stop_action)
 
 test_forward_backward()
