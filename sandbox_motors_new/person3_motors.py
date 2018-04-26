@@ -163,7 +163,7 @@ def turn_left_by_encoders(degrees, speed, stop_action):
     assert right_motor.connected
 
     right_motor.run_forever(speed_sp=speed * 8)
-    time.sleep((1 / (speed / 90)) * ((degrees * math.pi) / 36))
+    time.sleep((1 / (speed / (1 / 90))) * ((degrees * math.pi) / 36))
     right_motor.stop(stop_action=stop_action)
 
 
