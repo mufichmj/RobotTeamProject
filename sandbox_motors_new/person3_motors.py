@@ -115,7 +115,7 @@ def turn_left_seconds(seconds, speed, stop_action):
     assert left_motor.connected
     assert right_motor.connected
 
-    right_motor.run_forever(speed_sp=speed)
+    right_motor.run_forever(speed_sp=speed * 8)
     time.sleep(seconds)
     right_motor.stop(stop_action=stop_action)
 
@@ -139,7 +139,7 @@ def turn_left_by_time(degrees, speed, stop_action):
     assert left_motor.connected
     assert right_motor.connected
 
-    right_motor.run_forever(speed_sp=speed)
+    right_motor.run_forever(speed_sp=speed * 8)
     time.sleep(degrees)
     right_motor.stop(stop_action=stop_action)
 
@@ -160,8 +160,8 @@ def turn_left_by_encoders(degrees, speed, stop_action):
     # Check that the motors are actually connected
     assert left_motor.connected
     assert right_motor.connected
-    
-    right_motor.run_forever(speed_sp=speed)
+
+    right_motor.run_forever(speed_sp=speed * 8)
     time.sleep(degrees)
     right_motor.stop(stop_action=stop_action)
 
