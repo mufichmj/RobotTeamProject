@@ -1,7 +1,7 @@
 """
 Functions for moving the robot FORWARD and BACKWARD.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Mariah Mufich.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment forward_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -45,8 +45,10 @@ def forward_seconds(seconds, speed, stop_action):
     assert right_motor.connected
 
     left_motor.run_forever(speed_sp=speed*8, stop_action=stop_action)
-    time.sleep(seconds)
+    right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
+    time.sleep(5.0)
     left_motor.stop()
+    right_motor.stop()
 
 
 def forward_by_time(inches, speed, stop_action):
