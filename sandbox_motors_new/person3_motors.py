@@ -106,8 +106,8 @@ def turn_left_seconds(seconds, speed, stop_action):
     """
 
     # Connect two large motors on output ports B and C
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     # Check that the motors are actually connected
     assert left_motor.connected
@@ -130,8 +130,8 @@ def turn_left_by_time(degrees, speed, stop_action):
     """
 
     # Connect two large motors on output ports B and C
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     # Check that the motors are actually connected
     assert left_motor.connected
@@ -152,8 +152,8 @@ def turn_left_by_encoders(degrees, speed, stop_action):
     """
 
     # Connect two large motors on output ports B and C
-    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
     # Check that the motors are actually connected
     assert left_motor.connected
