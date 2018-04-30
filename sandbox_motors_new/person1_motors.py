@@ -142,7 +142,7 @@ def forward_by_time(inches, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep(inches/(speed*0.085))
+    time.sleep(inches/(abs(speed)*0.085))
     left_motor.stop()
     right_motor.stop()
 
@@ -162,7 +162,7 @@ def forward_by_encoders(inches, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep(inches/(speed*.085))
+    time.sleep(inches/(abs(speed)*.085))
     left_motor.stop()
     right_motor.stop()
 
