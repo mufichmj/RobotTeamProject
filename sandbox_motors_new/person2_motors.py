@@ -29,10 +29,10 @@ def test_spin_left_spin_right():
       4. Same as #1, 2, 3, but tests the spin_right functions.
     """
 
-    spin_left_seconds(7, 95, "break")
-    spin_left_by_time(40, 25, "coast")
-    spin_right_seconds(5, 50, "hold")
-    spin_right_by_time(40, 50, "break")
+    spin_left_seconds(7, 95, "brake")
+    #spin_left_by_time(40, 25, "coast")
+    #spin_right_seconds(5, 50, "hold")
+    #spin_right_by_time(40, 50, "brake")
 
 
 def spin_left_seconds(seconds, speed, stop_action):
@@ -43,7 +43,7 @@ def spin_left_seconds(seconds, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-
+    print(speed, seconds, )
     left_motor.run_timed(speed_sp=(-speed),time_sp=(seconds * 1000),stop_action= stop_action)
     right_motor.run_timed(speed_sp=(speed),time_sp=(seconds * 1000),stop_action= stop_action)
 
