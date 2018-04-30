@@ -27,12 +27,80 @@ def test_forward_backward():
       3. Same as #2, but runs forward_by_encoders.
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
-    forward_seconds(2, 50, "brake")
-    time.sleep(10)
-    forward_by_time(10, 50, "brake")
-    time.sleep(10)
-    # forward_by_encoders(20, 50, 'brake')
-    # time.sleep(10)
+    print()
+    print('Testing turn_left_seconds')
+
+    while True:
+        time_s = float(input("Enter a time to move forward (seconds): "))
+        if time_s == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100%): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        forward_seconds(time_s, speed_percent, stop_act)
+
+    print()
+    print('--------------------------------------')
+    print('Testing turn_left_by_time')
+
+    while True:
+        degrees = float(input("Enter inches to move forward: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        forward_by_time(degrees, speed_percent, stop_act)
+
+    print()
+    print('--------------------------------------')
+    print('Testing turn_left_by_encoders')
+
+    while True:
+        degrees = float(input("Enter inches to move forward: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        forward_by_encoders(degrees, speed_percent, stop_act)
+        print()
+
+    print()
+    print('--------------------------------------')
+    print('Testing turn_right_seconds')
+
+    while True:
+        time_s = float(input("Enter a time to move backward (seconds): "))
+        if time_s == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        backward_seconds(time_s, speed_percent, stop_act)
+
+    print()
+    print('--------------------------------------')
+    print('Testing turn_right_by_time')
+
+    while True:
+        degrees = float(input("Enter inches to move backward: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        backward_by_time(degrees, speed_percent, stop_act)
+
+    print()
+    print('--------------------------------------')
+    print('Testing turn_right_by_encoders')
+
+    while True:
+        degrees = float(input("Enter inches to move backward: "))
+        if degrees == 0:
+            break
+        speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
+        stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
+        backward_by_encoders(degrees, speed_percent, stop_act)
+
+    print()
+    print('--------------------------------------')
 
 
 
@@ -74,7 +142,7 @@ def forward_by_time(inches, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep(inches / (speed*0.085))
+    time.sleep(inches/(speed*0.085))
     left_motor.stop()
     right_motor.stop()
 
@@ -94,7 +162,7 @@ def forward_by_encoders(inches, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep((inches * 90) / 400)
+    time.sleep(inches/(speed*.085))
     left_motor.stop()
     right_motor.stop()
 
