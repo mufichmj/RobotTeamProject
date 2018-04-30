@@ -30,7 +30,7 @@ def test_spin_left_spin_right():
     """
 
     spin_left_seconds(7, 95, "brake")
-    #spin_left_by_time(40, 25, "coast")
+    spin_left_by_time(40, 25, "coast")
     #spin_right_seconds(5, 50, "hold")
     #spin_right_by_time(40, 50, "brake")
 
@@ -43,9 +43,9 @@ def spin_left_seconds(seconds, speed, stop_action):
     """
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
-    print(speed, seconds, )
-    left_motor.run_timed(speed_sp=(-speed),time_sp=(seconds * 1000),stop_action= stop_action)
-    right_motor.run_timed(speed_sp=(speed),time_sp=(seconds * 1000),stop_action= stop_action)
+
+    left_motor.run_timed(speed_sp=(-speed * 8),time_sp=(seconds * 1000),stop_action= stop_action)
+    right_motor.run_timed(speed_sp=(speed * 8),time_sp=(seconds * 1000),stop_action= stop_action)
 
 def spin_left_by_time(degrees, speed, stop_action):
     """
@@ -64,8 +64,8 @@ def spin_left_by_time(degrees, speed, stop_action):
 
     degrees = .50 * speed
 
-    left_motor.run_timed(speed_sp=(-speed), degrees_sp=(degrees), stop_action=(stop_action))
-    right_motor.run_timed(speed_sp=(speed), degrees_sp=(degrees), stop_action=(stop_action))
+    left_motor.run_timed(speed_sp=(-speed * 8), degrees_sp=(degrees), stop_action=(stop_action))
+    right_motor.run_timed(speed_sp=(speed * 8), degrees_sp=(degrees), stop_action=(stop_action))
 
     left_motor.wait_while(ev3.Motor.STATE_RUNNING)
     right_motor.wait_while(ev3.Motor.STATE_RUNNING)
@@ -90,8 +90,8 @@ def spin_right_seconds(seconds, speed, stop_action):
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
-    left_motor.run_timed(speed_sp=(speed), time_sp=(seconds * 1000), stop_action=(stop_action))
-    right_motor.run_timed(speed_sp=(-speed), time_sp=(seconds * 1000), stop_action=(stop_action))
+    left_motor.run_timed(speed_sp=(speed * 8), time_sp=(seconds * 1000), stop_action=(stop_action))
+    right_motor.run_timed(speed_sp=(-speed * 8), time_sp=(seconds * 1000), stop_action=(stop_action))
 
 def spin_right_by_time(degrees, speed, stop_action):
     """ Calls spin_left_by_time with negative speeds to achieve spin_right motion. """
@@ -100,8 +100,8 @@ def spin_right_by_time(degrees, speed, stop_action):
     left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
     right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
-    left_motor.run_timed(speed_sp=(speed), degrees_sp=(degrees), stop_action=(stop_action))
-    right_motor.run_timed(speed_sp=(-speed), degrees_sp=(degrees), stop_action=(stop_action))
+    left_motor.run_timed(speed_sp=(speed * 8), degrees_sp=(degrees), stop_action=(stop_action))
+    right_motor.run_timed(speed_sp=(-speed * 8), degrees_sp=(degrees), stop_action=(stop_action))
 
     left_motor.wait_while(ev3.Motor.STATE_RUNNING)
     right_motor.wait_while(ev3.Motor.STATE_RUNNING)
