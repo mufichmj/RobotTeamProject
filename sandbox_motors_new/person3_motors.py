@@ -3,7 +3,7 @@ Functions for TURNING the robot LEFT and RIGHT.
 Authors: David Fisher, David Mutchler and Zack Watson.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implement turn_left_seconds, then the relevant part of the test function.
+# DONE: 2. Implement turn_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #          Then repeat for turn_left_by_time.
 #          Then repeat for turn_left_by_encoders.
@@ -138,7 +138,7 @@ def turn_left_by_time(degrees, speed, stop_action):
     assert right_motor.connected
 
     right_motor.run_forever(speed_sp=speed * 8)
-    time.sleep(degrees)
+    time.sleep(degrees / (speed * 0.8))
     right_motor.stop(stop_action=stop_action)
 
 
