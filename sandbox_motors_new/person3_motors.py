@@ -29,8 +29,8 @@ def test_turn_left_turn_right():
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
 
-    print('Testing turn_left_seconds')
     print()
+    print('Testing turn_left_seconds')
 
     while True:
         time_s = float(input("Enter a time to turn left (seconds): "))
@@ -42,7 +42,6 @@ def test_turn_left_turn_right():
 
     print()
     print('Testing turn_left_by_time')
-    print()
 
     while True:
         degrees = float(input("Enter degrees to turn left: "))
@@ -54,7 +53,6 @@ def test_turn_left_turn_right():
 
     print()
     print('Testing turn_left_by_encoders')
-    print()
 
     while True:
         degrees = float(input("Enter degrees to turn left: "))
@@ -66,7 +64,6 @@ def test_turn_left_turn_right():
 
     print()
     print('Testing turn_right_seconds')
-    print()
 
     while True:
         time_s = float(input("Enter a time to turn right (seconds): "))
@@ -78,7 +75,6 @@ def test_turn_left_turn_right():
 
     print()
     print('Testing turn_right_by_time')
-    print()
 
     while True:
         degrees = float(input("Enter degrees to turn right: "))
@@ -90,7 +86,6 @@ def test_turn_left_turn_right():
 
     print()
     print('Testing turn_right_by_encoders')
-    print()
 
     while True:
         degrees = float(input("Enter degrees to turn right: "))
@@ -99,6 +94,8 @@ def test_turn_left_turn_right():
         speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
         stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
         turn_right_by_encoders(degrees, speed_percent, stop_act)
+
+    print()
 
 
 def turn_left_seconds(seconds, speed, stop_action):
