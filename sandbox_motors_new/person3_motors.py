@@ -41,6 +41,7 @@ def test_turn_left_turn_right():
         turn_left_seconds(time_s, speed_percent, stop_act)
 
     print()
+    print('--------------------------------------')
     print('Testing turn_left_by_time')
 
     while True:
@@ -52,6 +53,7 @@ def test_turn_left_turn_right():
         turn_left_by_time(degrees, speed_percent, stop_act)
 
     print()
+    print('--------------------------------------')
     print('Testing turn_left_by_encoders')
 
     while True:
@@ -61,8 +63,10 @@ def test_turn_left_turn_right():
         speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
         stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
         turn_left_by_encoders(degrees, speed_percent, stop_act)
+        print()
 
     print()
+    print('--------------------------------------')
     print('Testing turn_right_seconds')
 
     while True:
@@ -74,6 +78,7 @@ def test_turn_left_turn_right():
         turn_right_seconds(time_s, speed_percent, stop_act)
 
     print()
+    print('--------------------------------------')
     print('Testing turn_right_by_time')
 
     while True:
@@ -85,6 +90,7 @@ def test_turn_left_turn_right():
         turn_right_by_time(degrees, speed_percent, stop_act)
 
     print()
+    print('--------------------------------------')
     print('Testing turn_right_by_encoders')
 
     while True:
@@ -96,6 +102,7 @@ def test_turn_left_turn_right():
         turn_right_by_encoders(degrees, speed_percent, stop_act)
 
     print()
+    print('--------------------------------------')
 
 
 def turn_left_seconds(seconds, speed, stop_action):
