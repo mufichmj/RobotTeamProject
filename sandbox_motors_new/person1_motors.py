@@ -28,7 +28,11 @@ def test_forward_backward():
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
     forward_seconds(2, 50, "brake")
-    forward_by_time(8, 50, "brake")
+    time.sleep(10)
+    forward_by_time(23, 25, "brake")
+    time.sleep(10)
+    # forward_by_encoders(20, 50, 'brake')
+    # time.sleep(10)
 
 
 def forward_seconds(seconds, speed, stop_action):
@@ -69,7 +73,7 @@ def forward_by_time(inches, speed, stop_action):
 
     left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
     right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
-    time.sleep(5)
+    time.sleep(inches)
     left_motor.stop()
     right_motor.stop()
 
