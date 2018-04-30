@@ -71,7 +71,7 @@ def test_turn_left_turn_right():
             break
         speed_percent = float(input("Enter a speed percentage (0 to 100 %): "))
         stop_act = str(input("Enter a stop action (brake, coast, or hold): "))
-        turn_right_seconds(degrees, speed_percent, stop_act)
+        turn_right_seconds(time_s, speed_percent, stop_act)
 
     print()
     print('Testing turn_right_by_time')
