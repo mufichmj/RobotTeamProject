@@ -240,9 +240,9 @@ def make_sounds():
         if rc3.red_up:
             ev3.Sound.beep().wait()
         if rc3.red_down:
-            ev3.Sound.speak('Hello Friend')
+            ev3.Sound.speak('Hello Friend').wait()
         if rc3.blue_up:
-            ev3.Sound.speak('Zack Watson')
+            ev3.Sound.speak('Zack Watson').wait()
         if rc3.blue_down:
             break
 
