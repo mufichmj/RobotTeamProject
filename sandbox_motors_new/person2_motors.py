@@ -1,7 +1,7 @@
 """
 Functions for SPINNING the robot LEFT and RIGHT.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Ashley Shepherd.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment spin_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -29,6 +29,13 @@ def test_spin_left_spin_right():
       4. Same as #1, 2, 3, but tests the spin_right functions.
     """
 
+    spin_left_seconds(0.25, 100, "brake")
+    spin_left_by_time(50, 45, "coast")
+    spin_right_seconds(5, 50, "hold")
+    spin_right_by_time(40, 50, "brake")
+    spin_left_by_encoders(90, 50, "brake")
+    spin_right_by_encoders(150, 30, "brake")
+
 
 def spin_left_seconds(seconds, speed, stop_action):
     """
@@ -36,7 +43,11 @@ def spin_left_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed spin_right) and 100 (full speed spin_left).
     Uses the given stop_action.
     """
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
+    left_motor.run_timed(speed_sp=(-speed * 8),time_sp=(seconds * 1000),stop_action= stop_action)
+    right_motor.run_timed(speed_sp=(speed * 8),time_sp=(seconds * 1000),stop_action= stop_action)
 
 def spin_left_by_time(degrees, speed, stop_action):
     """
@@ -50,6 +61,19 @@ def spin_left_by_time(degrees, speed, stop_action):
     """
 
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+
+    tm = (degrees / (speed * 1.15)) * 1000
+
+    left_motor.run_timed(speed_sp=(-speed * 8), time_sp=(tm), stop_action=(stop_action))
+    right_motor.run_timed(speed_sp=(speed * 8), time_sp=(tm), stop_action=(stop_action))
+
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    ev3.Sound.beep().wait()
+
+
 def spin_left_by_encoders(degrees, speed, stop_action):
     """
     Makes the robot spin in place left the given number of degrees at the given speed,
@@ -59,17 +83,60 @@ def spin_left_by_encoders(degrees, speed, stop_action):
       2. Move until the computed number of degrees is reached.
     """
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+
+    newdgrs = (4 * degrees)
+
+
+    left_motor.run_to_rel_pos(speed_sp=(-speed * 8), position_sp= (-newdgrs), stop_action=(stop_action))
+    right_motor.run_to_rel_pos(speed_sp=(speed * 8), position_sp= (newdgrs), stop_action=(stop_action))
+
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    ev3.Sound.beep().wait()
 
 def spin_right_seconds(seconds, speed, stop_action):
     """ Calls spin_left_seconds with negative speeds to achieve spin_right motion. """
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+
+    left_motor.run_timed(speed_sp=(speed * 8), time_sp=(seconds * 1000), stop_action=stop_action)
+    right_motor.run_timed(speed_sp=(-speed * 8), time_sp=(seconds * 1000), stop_action=stop_action)
 
 def spin_right_by_time(degrees, speed, stop_action):
     """ Calls spin_left_by_time with negative speeds to achieve spin_right motion. """
 
 
+
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+
+    tm = (degrees / (speed * 1.15)) * 1000
+
+    left_motor.run_timed(speed_sp=(speed * 8), time_sp=(tm), stop_action=(stop_action))
+    right_motor.run_timed(speed_sp=(-speed * 8), time_sp=(tm), stop_action=(stop_action))
+
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    ev3.Sound.beep().wait()
+
+
+
 def spin_right_by_encoders(degrees, speed, stop_action):
     """ Calls spin_left_by_encoders with negative speeds to achieve spin_right motion. """
 
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
+    newdgrs = (4 * degrees)
+
+
+    left_motor.run_to_rel_pos(speed_sp=(speed * 8), position_sp= (newdgrs), stop_action=(stop_action))
+    right_motor.run_to_rel_pos(speed_sp=(-speed * 8), position_sp= (-newdgrs), stop_action=(stop_action))
+
+    left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    right_motor.wait_while(ev3.Motor.STATE_RUNNING)
+    ev3.Sound.beep().wait()
 test_spin_left_spin_right()
