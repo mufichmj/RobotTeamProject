@@ -7,11 +7,11 @@ Person 1: ev3.TouchSensor
 Person 2: ev3.Button
 Person 3: ev3.RemoteControl
 
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Zack Watson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # -----------------------------------------------------------------------------
-# TODO: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
+# DONE: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
 #           as described in the   _README_FIRST.txt   file.
 #
 # When your   ** ENTIRE TEAM ** understands that:
@@ -34,7 +34,7 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
     # run_test_buttons_on_ir_beacon()
-    # run_test_wait_for_press_on_ir_beacon_button()
+    run_test_wait_for_press_on_ir_beacon_button()
     # run_test_make_sounds()
 
 
@@ -42,7 +42,7 @@ def run_test_buttons_on_ir_beacon():
     """ Tests the   print_state_of_blue_up_button_on_ir_beacon   function. """
     print()
     print('------------------------------------------------------------------')
-    print('Testing the  print_state_of_blue_up_button_on_ir_beacon   unction:')
+    print('Testing the  print_state_of_blue_up_button_on_ir_beacon  function:')
     print('------------------------------------------------------------------')
 
     print()
@@ -73,7 +73,7 @@ def run_test_buttons_on_ir_beacon():
     print_state_of_blue_up_button_on_ir_beacon(10, 0.5)
 
     print()
-    print('The test SUCCEEDED if 10 10 True\'s and False\'s'
+    print('The test SUCCEEDED if 10 10 True\'s and False\'s '
           + 'were printed on the SSH terminal window,')
     print('at intervals of about 0.5 seconds each, with your code printing:')
     print('   True    when your friend was PRESSING the BLUE_UP button'
@@ -117,9 +117,16 @@ def print_state_of_blue_up_button_on_ir_beacon(n, seconds_per_print):
        2. SLEEPs for the given number of seconds.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # DONE: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
+
+    rc1 = ev3.RemoteControl(channel=1)
+    assert rc1.connected
+
+    for i in range(n):
+        print(rc1.blue_up)
+        time.sleep(seconds_per_print)
 
 
 def run_test_wait_for_press_on_ir_beacon_button():
@@ -187,6 +194,14 @@ def wait_for_RED_DOWN_button_press():
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
+    rc2 = ev3.RemoteControl(channel=2)
+    assert rc2.connected
+
+    while True:
+        if rc2.red_down:
+            break
+        time.sleep(0.05)
+    print('Done')
 
 def run_test_make_sounds():
     """ Tests the   make_sounds   function. """
