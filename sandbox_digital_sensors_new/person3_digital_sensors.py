@@ -7,11 +7,11 @@ Person 1: ev3.TouchSensor
 Person 2: ev3.Button
 Person 3: ev3.RemoteControl
 
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Zack Watson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # -----------------------------------------------------------------------------
-# TODO: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
+# DONE: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
 #           as described in the   _README_FIRST.txt   file.
 #
 # When your   ** ENTIRE TEAM ** understands that:
@@ -33,7 +33,7 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
-    # run_test_buttons_on_ir_beacon()
+    run_test_buttons_on_ir_beacon()
     # run_test_wait_for_press_on_ir_beacon_button()
     # run_test_make_sounds()
 
@@ -121,6 +121,13 @@ def print_state_of_blue_up_button_on_ir_beacon(n, seconds_per_print):
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
+    rc1 = ev3.RemoteControl(channel=1)
+    assert rc1.connected
+
+    for i in range(n):
+        print(rc1.blue_up)
+        time.sleep(seconds_per_print)
+
 
 def run_test_wait_for_press_on_ir_beacon_button():
     """ Tests the   wait_for_RED_DOWN_button_press   function. """
@@ -187,6 +194,14 @@ def wait_for_RED_DOWN_button_press():
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
+    rc2 = ev3.RemoteControl(channel=2)
+    assert rc2.connected
+
+    while True:
+        if rc2.red_down:
+            break
+        time.sleep(0.05)
+    print('Done')
 
 def run_test_make_sounds():
     """ Tests the   make_sounds   function. """
