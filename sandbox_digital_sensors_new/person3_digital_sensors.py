@@ -233,7 +233,7 @@ def make_sounds():
        -- BLUE_DOWN button:  The program breaks out of the loop.
     """
 
-    rc3 = ev3.RemoteControl(channel=2)
+    rc3 = ev3.RemoteControl(channel=3)
     assert rc3.connected
 
     while True:
