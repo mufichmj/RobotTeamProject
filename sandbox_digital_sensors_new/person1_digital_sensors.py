@@ -227,6 +227,18 @@ def show_images(list_of_images):
     Type hints:
       :type list_of_images: []
     """
+    touch_sensor = ev3.TouchSensor()
+    for k in range(len(list_of_images)):
+        display_image = False
+        while True:
+            if touch_sensor.is_pressed == 1:
+                display_image = True
+            if (touch_sensor.is_pressed == 0 and display_image == True):
+                print('Look at the image on the BRICK!')
+                ev3.Sound.speak('Ugly').wait()
+                #display image
+                break
+
 
 
 # -----------------------------------------------------------------------------
