@@ -35,7 +35,7 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
     # run_test_touch_sensor()
-    # run_test_wait_for_press()
+    run_test_wait_for_press()
     # run_test_show_images()
 
 
@@ -106,7 +106,7 @@ def print_state_of_touch_sensor(n, seconds_per_print):
        2. SLEEPs for the given number of seconds.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # DONE: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
     touch_sensor = ev3.TouchSensor()
@@ -158,7 +158,10 @@ def wait_for_press():
     # TODO: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
-
+    touch_sensor = ev3.TouchSensor()
+    while True:
+        if touch_sensor.is_pressed:
+            break
 
 def run_test_show_images():
     """ Tests the   show_images   function. """
