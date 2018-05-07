@@ -35,7 +35,7 @@ def main():
 
     # run_test_buttons_on_ir_beacon()
     # run_test_wait_for_press_on_ir_beacon_button()
-    # run_test_make_sounds()
+    run_test_make_sounds()
 
 
 def run_test_buttons_on_ir_beacon():
@@ -215,10 +215,14 @@ def run_test_make_sounds():
     print('Then press the IR Beacon buttons to make sounds.')
     print()
 
+    make_sounds()
+
+    print('Sounds are completed')
+
 
 def make_sounds():
     """
-    Constructs an ev3.RemoteControl object for channel 2.
+    Constructs an ev3.RemoteControl object for channel 3.
     Then, repeatedly make the IR Beacon buttons behave as follows:
       If the user presses the:
        -- RED_UP button:    The robot makes a BEEP.
@@ -229,17 +233,17 @@ def make_sounds():
        -- BLUE_DOWN button:  The program breaks out of the loop.
     """
 
-    rc2 = ev3.RemoteControl(channel=2)
-    assert rc2.connected
+    rc3 = ev3.RemoteControl(channel=2)
+    assert rc3.connected
 
     while True:
-        if rc2.red_up:
+        if rc3.red_up:
             ev3.Sound.beep().wait()
-        if rc2.red_down:
+        if rc3.red_down:
             ev3.Sound.speak('Hello Friend')
-        if rc2.blue_up:
+        if rc3.blue_up:
             ev3.Sound.speak('Zack Watson')
-        if rc2.blue_down:
+        if rc3.blue_down:
             break
 
 
