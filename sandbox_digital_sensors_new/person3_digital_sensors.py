@@ -33,8 +33,8 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
-    run_test_buttons_on_ir_beacon()
-    # run_test_wait_for_press_on_ir_beacon_button()
+    # run_test_buttons_on_ir_beacon()
+    run_test_wait_for_press_on_ir_beacon_button()
     # run_test_make_sounds()
 
 
@@ -42,7 +42,7 @@ def run_test_buttons_on_ir_beacon():
     """ Tests the   print_state_of_blue_up_button_on_ir_beacon   function. """
     print()
     print('------------------------------------------------------------------')
-    print('Testing the  print_state_of_blue_up_button_on_ir_beacon   unction:')
+    print('Testing the  print_state_of_blue_up_button_on_ir_beacon  function:')
     print('------------------------------------------------------------------')
 
     print()
@@ -73,7 +73,7 @@ def run_test_buttons_on_ir_beacon():
     print_state_of_blue_up_button_on_ir_beacon(10, 0.5)
 
     print()
-    print('The test SUCCEEDED if 10 10 True\'s and False\'s'
+    print('The test SUCCEEDED if 10 10 True\'s and False\'s '
           + 'were printed on the SSH terminal window,')
     print('at intervals of about 0.5 seconds each, with your code printing:')
     print('   True    when your friend was PRESSING the BLUE_UP button'
@@ -117,7 +117,7 @@ def print_state_of_blue_up_button_on_ir_beacon(n, seconds_per_print):
        2. SLEEPs for the given number of seconds.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # DONE: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
