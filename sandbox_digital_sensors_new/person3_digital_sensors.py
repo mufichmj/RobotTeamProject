@@ -242,7 +242,7 @@ def make_sounds():
         if rc3.red_down:
             ev3.Sound.speak('Rose-Hulman Institute of Technology').wait()
         if rc3.blue_up:
-            ev3.Sound.speak('Zack Watson').wait()
+            ev3.Sound.play("/home/robot/csse120/assets/sounds/awesome_pcm.wav").wait()
         if rc3.blue_down:
             break
 
