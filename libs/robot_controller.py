@@ -29,7 +29,7 @@ class Snatch3r(object):
 
     def forward(self, inches, speed=100, stop_action='brake'):
 
-        k = 360 / 4
+        k = 360 / 4.1
         degrees_motor = k * inches
         self.left_motor.run_to_rel_pos(position_sp=degrees_motor, speed_sp=8*speed, stop_action=stop_action)
         self.right_motor.run_to_rel_pos(position_sp=degrees_motor, speed_sp=8*speed, stop_action=stop_action)
