@@ -34,8 +34,8 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
     # run_test_buttons_on_ir_beacon()
-    run_test_wait_for_press_on_ir_beacon_button()
-    # run_test_make_sounds()
+    # run_test_wait_for_press_on_ir_beacon_button()
+    run_test_make_sounds()
 
 
 def run_test_buttons_on_ir_beacon():
@@ -190,7 +190,7 @@ def wait_for_RED_DOWN_button_press():
        2. Sleeps for a small amount (say, 0.05 seconds).
     """
     # -------------------------------------------------------------------------
-    # TODO: 4.  Implement and test this function.
+    # DONE: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
 
@@ -201,7 +201,7 @@ def wait_for_RED_DOWN_button_press():
         if rc2.red_down:
             break
         time.sleep(0.05)
-    print('Done')
+
 
 def run_test_make_sounds():
     """ Tests the   make_sounds   function. """
@@ -215,10 +215,14 @@ def run_test_make_sounds():
     print('Then press the IR Beacon buttons to make sounds.')
     print()
 
+    make_sounds()
+
+    print('Sounds are completed')
+
 
 def make_sounds():
     """
-    Constructs an ev3.RemoteControl object for channel 2.
+    Constructs an ev3.RemoteControl object for channel 3.
     Then, repeatedly make the IR Beacon buttons behave as follows:
       If the user presses the:
        -- RED_UP button:    The robot makes a BEEP.
@@ -228,6 +232,19 @@ def make_sounds():
               "/home/robot/csse120/assets/sounds/awesome_pcm.wav"
        -- BLUE_DOWN button:  The program breaks out of the loop.
     """
+
+    rc3 = ev3.RemoteControl(channel=3)
+    assert rc3.connected
+
+    while True:
+        if rc3.red_up:
+            ev3.Sound.beep().wait()
+        if rc3.red_down:
+            ev3.Sound.speak('Rose-Hulman Institute of Technology').wait()
+        if rc3.blue_up:
+            ev3.Sound.play("/home/robot/csse120/assets/sounds/awesome_pcm.wav").wait()
+        if rc3.blue_down:
+            break
 
 
 # -----------------------------------------------------------------------------
