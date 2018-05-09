@@ -39,3 +39,24 @@ class Snatch3r(object):
     def backward(self, inches, speed=100, stop_action='brake'):
 
         self.forward(inches, -speed, stop_action)
+
+    def spin_left(self, degrees, speed=100, stop_action='brake'):
+        
+        k = 4
+        new_degrees = (k * degrees)
+        self.left_motor.run_to_rel_pos(speed_sp=-speed*8, position_sp=-new_degrees, stop_action=stop_action)
+        self.right_motor.run_to_rel_pos(speed_sp=speed*8, position_sp=new_degrees, stop_action=stop_action)
+        self.left_motor.wait_while('running')
+        self.right_motor.wait_while('running')
+
+    def spin_right(self, degrees, speed=100, stop_action='brake'):
+
+        self.spin_left(degrees, -speed, stop_action)
+
+    def turn_left(self, degrees, speed=100, stop_action='brake'):
+
+        pass
+
+    def turn_right(self, degrees, speed=100, stop_action='brake'):
+
+        self.turn_left(degrees, -speed, stop_action)
