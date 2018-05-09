@@ -18,9 +18,6 @@ import time
 
 class Snatch3r(object):
     """Commands for the Snatch3r robot that might be useful in many different programs."""
-    
-    # TODO: Implement the Snatch3r class as needed when working the sandox exercises
-    # (and delete these comments)
 
     def __init__(self):
 
@@ -31,9 +28,13 @@ class Snatch3r(object):
         assert self.right_motor.connected
 
     def forward(self, inches, speed=100, stop_action='brake'):
-        
+
         self.left_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
         self.right_motor.run_forever(speed_sp=speed * 8, stop_action=stop_action)
         time.sleep(inches / (abs(speed) * 0.085))
         self.left_motor.stop()
         self.right_motor.stop()
+
+    def backward(self, inches, speed=100, stop_action='brake'):
+
+        self.forward(inches, -speed, stop_action)
