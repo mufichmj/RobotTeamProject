@@ -46,7 +46,7 @@ def main():
     print(" Drive inches")
     print("--------------------------------------------")
     ev3.Sound.speak("Drive inches").wait()
-    robot = ev3.Snatch3r()
+    robot = robo.Snatch3r()
 
     while True:
         speed_deg_per_second = int(input("Speed (0 to 900 dps): "))
