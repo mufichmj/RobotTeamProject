@@ -21,8 +21,8 @@ class Snatch3r(object):
 
     def __init__(self):
 
-        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
-        self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+        self.right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
 
         assert self.left_motor.connected
         assert self.right_motor.connected
