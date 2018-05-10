@@ -28,7 +28,7 @@ class Snatch3r(object):
         assert self.left_motor.connected
         assert self.right_motor.connected
 
-    def forward(self, inches, speed=100, stop_action='brake'):
+    def forward_inches(self, inches, speed=100, stop_action='brake'):
 
         k = 360 / 4.1
         degrees_motor = k * inches
@@ -37,11 +37,11 @@ class Snatch3r(object):
         self.left_motor.wait_while('running')
         self.right_motor.wait_while('running')
 
-    def backward(self, inches, speed=100, stop_action='brake'):
+    def backward_inches(self, inches, speed=100, stop_action='brake'):
 
-        self.forward(inches, -speed, stop_action)
+        self.forward_inches(inches, -speed, stop_action)
 
-    def spin_left(self, degrees, speed=100, stop_action='brake'):
+    def spin_left_degrees(self, degrees, speed=100, stop_action='brake'):
 
         k = 4
         new_degrees = (k * degrees)
@@ -50,19 +50,19 @@ class Snatch3r(object):
         self.left_motor.wait_while('running')
         self.right_motor.wait_while('running')
 
-    def spin_right(self, degrees, speed=100, stop_action='brake'):
+    def spin_right_degrees(self, degrees, speed=100, stop_action='brake'):
 
-        self.spin_left(degrees, -speed, stop_action)
+        self.spin_left_degrees(degrees, -speed, stop_action)
 
-    def turn_left(self, degrees, speed=100, stop_action='brake'):
+    def turn_left_degrees(self, degrees, speed=100, stop_action='brake'):
         
         self.right_motor.run_forever(speed_sp=speed * 8)
         time.sleep((1 / ((abs(speed) * 8) * (1 / 90))) * ((abs(degrees) * math.pi) / 36))
         self.right_motor.stop(stop_action=stop_action)
 
-    def turn_right(self, degrees, speed=100, stop_action='brake'):
+    def turn_right_degrees(self, degrees, speed=100, stop_action='brake'):
 
-        self.turn_left(degrees, -speed, stop_action)
+        self.turn_left_degrees(degrees, -speed, stop_action)
 
     def loop_forever(self):
         # This is a convenience method that I don't really recommend for most programs other than m5.
@@ -77,3 +77,26 @@ class Snatch3r(object):
         # Modify a variable that will allow the loop_forever method to end. Additionally stop motors and set LEDs green.
         # The most important part of this method is given here, but you should add a bit more to stop motors, etc.
         self.running = False
+
+    def forward(self, left, right):
+        self.left_motor.run_forever(speed_sp=left)
+        self.right_motor.run_forever(speed_sp=right)
+
+    def backward(self, left, right):
+        self.forward(-left, -right)
+
+    def stop(self):
+        self.left_motor.stop(stop_action='brake')
+        self.right_motor.stop(stop_action='brake')
+
+    def left(self, left, right):
+        self.forward(-left, right)
+
+    def right(self, left, right):
+        self.forward(left, -right)
+
+    def arm_up(self):
+        pass
+
+    def arm_down(self):
+        pass
