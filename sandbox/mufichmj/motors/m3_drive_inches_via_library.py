@@ -62,6 +62,49 @@ def main():
     print("Goodbye!")
     ev3.Sound.speak("Goodbye").wait()
 
+def show_leds():
+
+    button = ev3.Button
+    led = ev3.Led
+    while True:
+        if button.left:
+            led.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+        if button.right:
+            led.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
+        if button.up:
+            led.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
+        if button.down:
+            led.set_color(ev3.Leds.all_off())
+        if button.backspace:
+                break
+
+def make_sounds():
+
+    rc3 = ev3.RemoteControl(channel=3)
+    assert rc3.connected
+
+    while True:
+        if rc3.red_up:
+            ev3.Sound.beep().wait()
+        if rc3.red_down:
+            ev3.Sound.speak('Rose-Hulman Institute of Technology').wait()
+        if rc3.blue_up:
+            ev3.Sound.play("/home/robot/csse120/assets/sounds/awesome_pcm.wav").wait()
+        if rc3.blue_down:
+            break
+
+def make_image():
+
+    lcd_screen = ev3.Screen()
+
+    image = Image.open("/home/robot/csse120/assets/images/ev3_lego/eyes_angry.bmp")
+
+    x_location =
+    y_location =
+    lcd_screen.image.paste(image,(x_location, y_location))
+    lcd.screen.update()
+
+
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
