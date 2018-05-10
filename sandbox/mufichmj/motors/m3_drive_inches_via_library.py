@@ -34,7 +34,7 @@ Authors: David Fisher and PUT_YOUR_NAME_HERE.
 
 import ev3dev.ev3 as ev3
 import robot_controller as robo
-
+from PIL import Image
 
 def main():
     # --------------------------------------------------------------
@@ -99,10 +99,10 @@ def make_image():
 
     image = Image.open("/home/robot/csse120/assets/images/ev3_lego/eyes_angry.bmp")
 
-    x_location =
-    y_location =
+    x_location = 0
+    y_location = 0
     lcd_screen.image.paste(image,(x_location, y_location))
-    lcd.screen.update()
+    lcd_screen.update()
 
 
 
