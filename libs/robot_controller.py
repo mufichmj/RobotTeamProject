@@ -30,7 +30,7 @@ class Snatch3r(object):
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.buttons = ev3.Button()
         self.remote1 = ev3.RemoteControl(channel=1)
-        self.running = None
+        self.running = False
 
         assert self.left_motor
         assert self.right_motor
@@ -91,6 +91,11 @@ class Snatch3r(object):
         # Modify a variable that will allow the loop_forever method to end. Additionally stop motors and set LEDs green.
         # The most important part of this method is given here, but you should add a bit more to stop motors, etc.
         self.running = False
+        self.arm_motor.stop(stop_action='brake')
+        self.left_motor.stop(stop_action='brake')
+        self.right_motor.stop(stop_action='brake')
+        ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+        ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
 
     def forward(self, left, right):
         self.left_motor.run_forever(speed_sp=left)
