@@ -23,10 +23,24 @@ class Snatch3r(object):
 
         self.left_motor = ev3.LargeMotor(ev3.OUTPUT_C)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+        self.touch_sensor = ev3.TouchSensor()
+        self.color_sensor = ev3.ColorSensor()
+        self.ir_sensor = ev3.InfraredSensor()
+        self.pixy = ev3.Sensor(driver_name="pixy-lego")
+        self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
+        self.buttons = ev3.Button()
+        self.remote1 = ev3.RemoteControl(channel=1)
         self.running = None
 
-        assert self.left_motor.connected
-        assert self.right_motor.connected
+        assert self.left_motor
+        assert self.right_motor
+        assert self.arm_motor
+        assert self.touch_sensor
+        assert self.color_sensor
+        assert self.ir_sensor
+        assert self.pixy
+        assert self.buttons
+        assert self.remote1
 
     def forward_inches(self, inches, speed=100, stop_action='brake'):
 
