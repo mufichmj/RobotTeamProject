@@ -29,6 +29,7 @@ import tkinter
 from tkinter import ttk
 
 import mqtt_remote_method_calls as com
+import time
 
 
 def main():
@@ -174,6 +175,7 @@ def quit_program(mqtt_client, shutdown_ev3):
     if shutdown_ev3:
         print("shutdown")
         mqtt_client.send_message("shutdown")
+        time.sleep(5.0)
     mqtt_client.close()
     exit()
 
