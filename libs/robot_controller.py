@@ -96,6 +96,8 @@ class Snatch3r(object):
         self.right_motor.stop(stop_action='brake')
         ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
+        if self.touch_sensor.is_pressed:
+            self.arm_down()
 
     def forward(self, left, right):
         self.left_motor.run_forever(speed_sp=left)
@@ -121,4 +123,5 @@ class Snatch3r(object):
         self.arm_motor.stop(stop_action='brake')
 
     def arm_down(self):
-        self.arm_motor.run_to_rel_pos(position_sp=-14.2*360, speed_sp=900, stop_action='brake')
+        if self.touch_sensor.is_pressed:
+            self.arm_motor.run_to_rel_pos(position_sp=-14.2*360, speed_sp=900, stop_action='brake')
