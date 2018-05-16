@@ -14,7 +14,7 @@ class Robot(object):
 
 
     def go_through_cones(self, number_cones):
-        for k in range(number_cones / 2):
+        for k in range(number_cones):
             self.robot.forward(400, 400)
             time.sleep(1)
             self.robot.stop()
