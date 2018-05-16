@@ -1,7 +1,5 @@
 # Zack Watson Final Project for pc
 
-import robot_controller as robo
-import time
 import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
@@ -26,7 +24,7 @@ def main():
 
     display_location = ttk.Label(main_frame, text="Robot messages will display here")
     display_location.grid(row=1, column=0)
-    
+
     cd = ComputerDelegate(display_location)
     mqtt_client = com.MqttClient(cd)
     mqtt_client.connect_to_ev3()
