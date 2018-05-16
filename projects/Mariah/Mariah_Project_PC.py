@@ -5,8 +5,6 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 
 
-
-
 def main():
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
@@ -28,6 +26,7 @@ def main():
     cones_button['command'] = lambda: send_cones(mqtt_client, number_of_cones_entry)
     root.bind('<Up>', lambda event: send_cones(mqtt_client, number_of_cones_entry))
 
+    root.mainloop()
 
 
 def send_cones(mqtt_client, number_of_cones_entry):
