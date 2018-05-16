@@ -8,18 +8,21 @@ import mqtt_remote_method_calls as com
 import robot_controller as robo
 
 
+class Robot(object):
+    def __init__(self):
+        self.robot = robo.Snatch3r()
 
-ir_sensor = ev3.InfraredSensor()
-print(ir_sensor.proximity)
 
-def Main():
-    robot = robo.Snatch3r()
-    mqtt_client = com.MqttClient(robot)
+
+
+
+def main():
+    delegate = Robot()
+    mqtt_client = com.MqttClient(delegate)
     mqtt_client.connect_to_pc()
 
     robot.loop_forever()
-    # mqtt = .....(robot)
-    #  connect
-    #
-    # loop
-    #
+
+
+main()
+
