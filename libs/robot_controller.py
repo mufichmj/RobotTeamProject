@@ -66,7 +66,7 @@ class Snatch3r(object):
 
     def spin_right_degrees(self, degrees, speed=100, stop_action='brake'):
 
-        self.spin_left_degrees(degrees, -speed, stop_action)
+        self.spin_left_degrees(-degrees, speed, stop_action)
 
     def turn_left_degrees(self, degrees, speed=100, stop_action='brake'):
         
