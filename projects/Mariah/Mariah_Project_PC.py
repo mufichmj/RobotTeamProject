@@ -31,6 +31,7 @@ def main():
 
 def send_cones(mqtt_client, number_of_cones_entry):
     number_of_cones = number_of_cones_entry.get()
+    number_of_cones = int(number_of_cones) / 2
     mqtt_client.send_message('go_through_cones', [int(number_of_cones)])
 
 
