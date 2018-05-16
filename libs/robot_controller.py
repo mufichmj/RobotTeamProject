@@ -57,7 +57,7 @@ class Snatch3r(object):
 
     def spin_left_degrees(self, degrees, speed=100, stop_action='brake'):
 
-        k = 4
+        k = 4.1
         new_degrees = (k * degrees)
         self.left_motor.run_to_rel_pos(speed_sp=-speed*8, position_sp=-new_degrees, stop_action=stop_action)
         self.right_motor.run_to_rel_pos(speed_sp=speed*8, position_sp=new_degrees, stop_action=stop_action)
@@ -66,7 +66,7 @@ class Snatch3r(object):
 
     def spin_right_degrees(self, degrees, speed=100, stop_action='brake'):
 
-        k = 4
+        k = 4.1
         new_degrees = (k * degrees)
         self.left_motor.run_to_rel_pos(speed_sp=speed*8, position_sp=new_degrees, stop_action=stop_action)
         self.right_motor.run_to_rel_pos(speed_sp=-speed*8, position_sp=-new_degrees, stop_action=stop_action)
