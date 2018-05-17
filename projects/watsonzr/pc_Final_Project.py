@@ -42,8 +42,12 @@ def main():
     hands_up_button.grid(row=1, column=4)
     hands_up_button['command'] = lambda: send_hands_up(mqtt_client)
 
-    display_location = ttk.Label(main_frame, text="Dancing...")
+    display_location = ttk.Label(main_frame, text="Waiting...")
     display_location.grid(row=2, column=2)
+
+    exit_button = ttk.Button(main_frame, text="Exit")
+    exit_button.grid(row=2, column=4)
+    exit_button['command'] = lambda: send_exit(mqtt_client)
 
     cd = ComputerDelegate(display_location)
     mqtt_client = com.MqttClient(cd)
@@ -70,6 +74,12 @@ def send_silento(mqtt_client):
 
 def send_hands_up(mqtt_client):
     mqtt_client.send_message('hands_up')
+
+
+def send_exit(mqtt_client):
+    mqtt_client.send_message('exit')
+    mqtt_client.close()
+    exit()
 
 
 main()

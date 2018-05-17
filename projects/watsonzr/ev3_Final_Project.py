@@ -29,6 +29,9 @@ class RobotDelegate(object):
     def hands_up(self):
         self.robot.arm_up()
 
+    def exit(self):
+        self.robot.shutdown()
+
 
 def main():
     rd = RobotDelegate()
