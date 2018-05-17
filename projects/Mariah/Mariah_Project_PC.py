@@ -31,13 +31,13 @@ def main():
     left_speed_label = ttk.Label(main_frame, text="Left")
     left_speed_label.grid(row=0, column=0)
     left_speed_entry = ttk.Entry(main_frame, width=8)
-    left_speed_entry.insert(0, "300")
+    left_speed_entry.insert(0, "400")
     left_speed_entry.grid(row=1, column=0)
 
     right_speed_label = ttk.Label(main_frame, text="Right")
     right_speed_label.grid(row=0, column=2)
     right_speed_entry = ttk.Entry(main_frame, width=8, justify=tkinter.RIGHT)
-    right_speed_entry.insert(0, "300")
+    right_speed_entry.insert(0, "400")
     right_speed_entry.grid(row=1, column=2)
 
     forward_button = ttk.Button(main_frame, text="Forward")
@@ -104,60 +104,49 @@ def send_cones(mqtt_client, number_of_cones_entry):
     print("Lets play soccer")
     number_of_cones = number_of_cones_entry.get()
     number_of_cones = int(number_of_cones) / 2
-    mqtt_client.send_message('go_through_cones', [int(number_of_cones)])
+    mqtt_client.send_message("go_through_cones", [int(number_of_cones)])
 
 
 def send_up(mqtt_client):
-    """Sends a message to the robot to run the function arm up"""
     print("arm_up")
-    mqtt_client.send_message("arm_up")
+    mqtt_client.send_message("hand_ball")
 
 
 def send_down(mqtt_client):
-    """Sends a message to the robot to run the function arm down"""
     print("arm_down")
-    mqtt_client.send_message("arm_down")
+    mqtt_client.send_message("yellow_card")
 
 
 def send_forward(mqtt_client, left_speed_entry, right_speed_entry):
-    """Sends a message to the robot to run the function mario, which has the
-    function drive in it"""
     print("forward")
     mqtt_client.send_message("Shoot", [int(left_speed_entry.get()),
                                        int(right_speed_entry.get())])
 
 
 def send_left(mqtt_client, left_speed_entry, right_speed_entry):
-    """Sends a message to the robot to run the function mario, which has the
-    function drive in it"""
     print("left")
     mqtt_client.send_message("Pass", [-int(left_speed_entry.get()),
                                        int(right_speed_entry.get())])
 
 
 def send_right(mqtt_client, left_speed_entry, right_speed_entry):
-    """Sends a message to the robot to run the function mario, which has the
-    function drive in it"""
     print("right")
     mqtt_client.send_message("Pass", [int(left_speed_entry.get()),
                                        -int(right_speed_entry.get())])
 
 
 def send_back(mqtt_client, left_speed_entry, right_speed_entry):
-    """Sends a message to the robot to run the function backwards"""
     print("backward")
     mqtt_client.send_message("backward", [int(left_speed_entry.get()),
                                           int(right_speed_entry.get())])
 
 
 def send_stop(mqtt_client):
-    """Sends a mesasge to the robot to run the function stop"""
     print("stop")
     mqtt_client.send_message("stop")
 
 
 def quit_program(mqtt_client, shutdown_ev3):
-    """Sends a message to the robot to run the function shutdown"""
     if shutdown_ev3:
         print("shutdown")
         mqtt_client.send_message("shutdown")
