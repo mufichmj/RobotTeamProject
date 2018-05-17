@@ -107,6 +107,26 @@ def send_cones(mqtt_client, number_of_cones_entry):
     mqtt_client.send_message("go_through_cones", [int(number_of_cones)])
 
 
+def send_left(mqtt_client, left_speed_entry, right_speed_entry):
+    print("left")
+    mqtt_client.send_message("pass_the_ball", [-int(left_speed_entry.get()),
+                                               int(right_speed_entry.get())])
+
+
+def send_right(mqtt_client, left_speed_entry, right_speed_entry):
+    print("right")
+    mqtt_client.send_message("pass_the_ball", [int(left_speed_entry.get()),
+                                       -int(right_speed_entry.get())])
+
+
+def send_forward(mqtt_client, left_speed_entry, right_speed_entry):
+    print("forward")
+    mqtt_client.send_message("shoot", [int(left_speed_entry.get()),
+                                           int(right_speed_entry.get())])
+
+
+
+
 def send_up(mqtt_client):
     print("arm_up")
     mqtt_client.send_message("hand_ball")
@@ -115,24 +135,6 @@ def send_up(mqtt_client):
 def send_down(mqtt_client):
     print("arm_down")
     mqtt_client.send_message("yellow_card")
-
-
-def send_forward(mqtt_client, left_speed_entry, right_speed_entry):
-    print("forward")
-    mqtt_client.send_message("Shoot", [int(left_speed_entry.get()),
-                                       int(right_speed_entry.get())])
-
-
-def send_left(mqtt_client, left_speed_entry, right_speed_entry):
-    print("left")
-    mqtt_client.send_message("Pass", [-int(left_speed_entry.get()),
-                                       int(right_speed_entry.get())])
-
-
-def send_right(mqtt_client, left_speed_entry, right_speed_entry):
-    print("right")
-    mqtt_client.send_message("Pass", [int(left_speed_entry.get()),
-                                       -int(right_speed_entry.get())])
 
 
 def send_back(mqtt_client, left_speed_entry, right_speed_entry):
