@@ -24,10 +24,23 @@ class RobotDelegate(object):
         pass
 
     def whip_nae_nae(self):
-        pass
+        self.robot.left(500, 500)
+        time.sleep(0.5)
+        self.robot.stop()
+        self.robot.arm_part_up()
+        time.sleep(1)
+        self.robot.left(500, 500)
+        time.sleep(0.25)
+        self.robot.right(500, 500)
+        time.sleep(0.25)
+        self.robot.stop()
+        self.robot.arm_up()
 
     def hands_up(self):
         self.robot.arm_up()
+
+    def arm_down(self):
+        self.robot.arm_down()
 
     def exit(self):
         self.robot.shutdown()
