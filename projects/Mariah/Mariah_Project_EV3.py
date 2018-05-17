@@ -40,6 +40,8 @@ class Robot(object):
 
 
 
+
+
 def main():
     delegate = Robot()
     mqtt_client = com.MqttClient(delegate)
