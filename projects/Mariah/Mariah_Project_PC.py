@@ -5,21 +5,37 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 
 
+# class Computer_Delegate(object):
+#     def __init__(self, location):
+#         self.location = location
+#
+#     def goal(self):
+#         root1 = tkinter.Toplevel()
+#
+#         photo = tkinter.PhotoImage(file='http://www.cbelmira.com/blog/hs-boys-soccer-late-goals-hurt-oneonta-in-3-2-state-loss/')
+#         button1 = ttk.Button(root1, image=photo)
+#
+#         button1.image = photo
+#         button1.grid()
+#         button1['command'] = lambda: print('Goal, you win!')
+
+
 def main():
+    # cd = Computer_Delegate(location)
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
 
     root = tkinter.Tk()
-    root.title("MQTT Remote - Soccer Practice!")
+    root.title("MQTT Remote-Soccer Practice!")
 
     main_frame = ttk.Frame(root, padding=20, relief='raised')
     main_frame.grid()
 
-    number_of_cones_label = ttk.Label(main_frame, text="Number of Cones")
+    number_of_cones_label = ttk.Label(main_frame, text="Let's Play Soccer!")
     number_of_cones_label.grid(row=0, column=1)
     number_of_cones_entry = ttk.Entry(main_frame, width=8)
     number_of_cones_entry.insert(0, "2")
-    number_of_cones_entry.grid(row=1, column=0)
+    number_of_cones_entry.grid(row=6, column=1)
 
     cones_button = ttk.Button(main_frame, text="Run through cones")
     cones_button.grid(row=5, column=1)
@@ -95,6 +111,11 @@ def main():
     e_button = ttk.Button(main_frame, text="Exit")
     e_button.grid(row=6, column=2)
     e_button['command'] = (lambda: quit_program(mqtt_client, True))
+
+    # cd = Computer_Delegate(location)
+    # mqtt_client = com.MqttClient(cd)
+    # mqtt_client.connect_to_ev3()
+
     root.mainloop()
 
 

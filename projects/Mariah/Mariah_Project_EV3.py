@@ -40,22 +40,11 @@ class Robot(object):
             self.pixy.mode = ""
 
 
-    def goal(self):
-        root1 = tkinter.Toplevel()
-
-        photo = tkinter.PhotoImage(file='http://www.cbelmira.com/blog/hs-boys-soccer-late-goals-hurt-oneonta-in-3-2-state-loss/')
-        button1 = ttk.Button(root1, image=photo)
-
-        button1.image = photo
-        button1.grid()
-        button1['command'] = lambda: print('Goal, you win!')
 
 
 
-    def hand_ball(self):
 
 
-    def yellow_card(self):
 
 
 
