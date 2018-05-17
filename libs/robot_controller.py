@@ -11,6 +11,7 @@
   could be called.  That way it's a generic action that could be used in any task.
 """
 
+
 import ev3dev.ev3 as ev3
 import math
 import time
@@ -130,6 +131,14 @@ class Snatch3r(object):
     def arm_down(self):
         if self.touch_sensor.is_pressed:
             self.arm_motor.run_to_rel_pos(position_sp=-14.2*360, speed_sp=900, stop_action='brake')
+
+
+
+
+
+    def seek_beacon(self):
+
+
 
 
     def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):

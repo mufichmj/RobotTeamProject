@@ -32,10 +32,10 @@ class Robot(object):
             self.robot.stop()
             self.robot.spin_left_degrees(90)
 
-    def pass_the_ball(self):
+
+    def shoot_soccer_ball(self):
 
 
-    def shoot(self):
 
 
     def hand_ball(self):
@@ -44,10 +44,6 @@ class Robot(object):
     def yellow_card(self):
 
 
-
-
-
-    def kick_soccer_ball(self):
 
 
     def goal(self):
