@@ -14,6 +14,21 @@ class RobotDelegate(object):
     def loop_forever(self):
         self.robot.loop_forever()
 
+    def moonwalk(self):
+        pass
+
+    def waltz(self):
+        pass
+
+    def square_dance(self):
+        pass
+
+    def whip_nae_nae(self):
+        pass
+
+    def hands_up(self):
+        self.robot.arm_up()
+
 
 def main():
     rd = RobotDelegate()
