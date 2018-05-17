@@ -28,7 +28,7 @@ class RobotDelegate(object):
         time.sleep(0.75)
         self.robot.stop()
         self.robot.arm_part_up()
-        time.sleep(3)
+        time.sleep(2)
         self.robot.left(500, 500)
         time.sleep(0.5)
         self.robot.right(500, 500)
