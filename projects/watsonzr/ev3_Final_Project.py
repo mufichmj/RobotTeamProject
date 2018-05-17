@@ -18,7 +18,7 @@ class RobotDelegate(object):
         self.robot.left_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
         self.robot.left_motor.stop(stop_action='brake')
-        for _ in range(9):
+        for _ in range(4):
             self.robot.right_motor.run_forever(speed_sp=-900)
             time.sleep(0.5)
             self.robot.right_motor.stop(stop_action='brake')
