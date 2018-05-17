@@ -130,7 +130,7 @@ class Snatch3r(object):
 
     def arm_part_up(self):
         self.arm_motor.run_forever(speed_sp=900)
-        time.sleep(1)
+        time.sleep(2.5)
         self.arm_motor.stop(stop_action='coast')
 
     def arm_down(self):
