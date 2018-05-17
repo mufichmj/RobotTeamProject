@@ -26,8 +26,6 @@ def main():
     cones_button['command'] = lambda: send_cones(mqtt_client, number_of_cones_entry)
     root.bind('<space>', lambda event: send_cones(mqtt_client, number_of_cones_entry))
 
-
-
     left_speed_label = ttk.Label(main_frame, text="Left")
     left_speed_label.grid(row=0, column=0)
     left_speed_entry = ttk.Entry(main_frame, width=8)
@@ -125,19 +123,14 @@ def send_forward(mqtt_client, left_speed_entry, right_speed_entry):
                                            int(right_speed_entry.get())])
 
 
-
-
 def send_up(mqtt_client):
     print("arm_up")
-    mqtt_client.send_message("hand_ball")
+    mqtt_client.send_message("arm_up")
 
 
 def send_down(mqtt_client):
     print("arm_down")
-    mqtt_client.send_message("yellow_card")
-
-
-
+    mqtt_client.send_message("arm_down")
 
 
 def send_back(mqtt_client, left_speed_entry, right_speed_entry):

@@ -33,8 +33,22 @@ class Robot(object):
             self.robot.spin_left_degrees(90)
 
 
-    def shoot_soccer_ball(self):
 
+    def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
+        self.forward(left_speed_entry, right_speed_entry)
+        while True:
+            self.pixy.mode = ""
+
+
+    def goal(self):
+        root1 = tkinter.Toplevel()
+
+        photo = tkinter.PhotoImage(file='http://www.cbelmira.com/blog/hs-boys-soccer-late-goals-hurt-oneonta-in-3-2-state-loss/')
+        button1 = ttk.Button(root1, image=photo)
+
+        button1.image = photo
+        button1.grid()
+        button1['command'] = lambda: print('Goal, you win!')
 
 
 
@@ -42,11 +56,6 @@ class Robot(object):
 
 
     def yellow_card(self):
-
-
-
-
-    def goal(self):
 
 
 
