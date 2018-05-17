@@ -33,6 +33,12 @@ class Robot(object):
             self.robot.spin_left_degrees(90)
 
 
+    def kick_soccer_ball(self):
+
+
+    def goal(self):
+
+
 
 def main():
     delegate = Robot()
