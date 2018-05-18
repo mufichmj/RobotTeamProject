@@ -30,10 +30,32 @@ class RobotDelegate(object):
         self.robot.right_motor.stop(stop_action='brake')
 
     def waltz(self):
-        pass
+        for _ in range(3):
+            self.robot.left_motor.run_forever(speed_sp=400)
+            time.sleep(0.75)
+            self.robot.stop()
+            self.robot.right_motor.run_forever(speed_sp=400)
+            time.sleep(1.25)
+            self.robot.stop()
+            self.robot.left_motor.run_forever(speed_sp=400)
+            time.sleep(0.5)
+            self.robot.stop()
+            self.robot.right_motor.run_forever(speed_sp=-400)
+            time.sleep(0.75)
+            self.robot.stop()
+            self.robot.left_motor.run_forever(speed_sp=-400)
+            time.sleep(1.25)
+            self.robot.stop()
+            self.robot.right_motor.run_forever(speed_sp=-400)
+            time.sleep(0.5)
+            self.robot.stop()
 
     def square_dance(self):
-        pass
+        for _ in range(4):
+            self.robot.forward(500, 500)
+            time.sleep(3)
+            self.robot.stop()
+            self.robot.turn_left_degrees(90)
 
     def whip_nae_nae(self):
         self.robot.left(500, 500)
