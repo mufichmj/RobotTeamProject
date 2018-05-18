@@ -17,17 +17,17 @@ class RobotDelegate(object):
     def moonwalk(self):
         self.robot.left_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
-        self.robot.left_motor.stop(stop_action='brake')
+        self.robot.stop()
         for _ in range(4):
             self.robot.right_motor.run_forever(speed_sp=-900)
             time.sleep(0.5)
-            self.robot.right_motor.stop(stop_action='brake')
+            self.robot.stop()
             self.robot.left_motor.run_forever(speed_sp=-900)
             time.sleep(0.5)
-            self.robot.left_motor.stop(stop_action='brake')
+            self.robot.stop()
         self.robot.right_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
-        self.robot.right_motor.stop(stop_action='brake')
+        self.robot.stop()
 
     def waltz(self):
         for _ in range(3):
