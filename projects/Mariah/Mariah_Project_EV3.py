@@ -7,11 +7,11 @@ import robot_controller as robo
 class Robot(object):
     def __init__(self):
         self.robot = robo.Snatch3r()
-        self.pixy = ev3.Sensor(driver_name="pixy_lego")
-        self.pixy.mode = "SIG1"
-        print("(X, Y)=({}, {}) Width={} Height={}".format(
-            pixy.value(1), pixy.value(2), pixy.value(3),
-            pixy.value(4)))
+        # self.pixy = ev3.Sensor(driver_name="pixy_lego")
+        # self.pixy.mode = "SIG1"
+        # print("(X, Y)=({}, {}) Width={} Height={}".format(
+        #     pixy.value(1), pixy.value(2), pixy.value(3),
+        #     pixy.value(4)))
 
 
 
@@ -40,10 +40,10 @@ class Robot(object):
 
 
 
-    def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
-        self.forward(left_speed_entry, right_speed_entry)
-        while True:
-            self.pixy.mode = ""
+    # def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
+    #     self.forward(left_speed_entry, right_speed_entry)
+    #     while True:
+    #         self.pixy.mode = ""
 
 
 
@@ -51,7 +51,6 @@ def main():
     delegate = Robot()
     mqtt_client = com.MqttClient(delegate)
     mqtt_client.connect_to_pc()
-
     delegate.loop_forever()
 
 
