@@ -7,7 +7,7 @@ import robot_controller as robo
 class Robot(object):
     def __init__(self):
         self.robot = robo.Snatch3r()
-
+        self.pixy =
 
     def loop_forever(self):
         self.robot.loop_forever()
@@ -34,10 +34,10 @@ class Robot(object):
 
 
 
-    # def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
-    #     self.forward(left_speed_entry, right_speed_entry)
-    #     while True:
-    #         self.pixy.mode = ""
+    def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
+        self.forward(left_speed_entry, right_speed_entry)
+        while True:
+            self.pixy.mode = ""
 
 
 

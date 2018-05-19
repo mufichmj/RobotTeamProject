@@ -42,6 +42,21 @@ def main():
     cones_button['command'] = lambda: send_cones(mqtt_client, number_of_cones_entry)
     root.bind('<space>', lambda event: send_cones(mqtt_client, number_of_cones_entry))
 
+
+
+
+
+
+    shoot_ball = ttk.Button(main_frame, text="Shoot Ball")
+    shoot_ball.grid(row=7, column=1)
+    shoot_ball['command'] = lambda: send_shoot(mqtt_client)
+    root.bind('<s>', lambda event: send_shoot(mqtt_client))
+
+
+
+
+
+
     left_speed_label = ttk.Label(main_frame, text="Left")
     left_speed_label.grid(row=0, column=0)
     left_speed_entry = ttk.Entry(main_frame, width=8)
@@ -105,6 +120,11 @@ def send_cones(mqtt_client, number_of_cones_entry):
     number_of_cones = number_of_cones_entry.get()
     number_of_cones = int(number_of_cones) / 2
     mqtt_client.send_message("go_through_cones", [int(number_of_cones)])
+
+
+def send_shoot(mqtt_client):
+    print("Shoot Ball")
+    mqtt_client.send_message("shoot_soccer_ball")
 
 
 def send_left(mqtt_client, left_speed_entry, right_speed_entry):
