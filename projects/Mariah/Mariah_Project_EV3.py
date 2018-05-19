@@ -7,7 +7,13 @@ import robot_controller as robo
 class Robot(object):
     def __init__(self):
         self.robot = robo.Snatch3r()
-        self.pixy =
+        self.pixy = ev3.Sensor(driver_name="pixy_lego")
+        self.pixy.mode = "SIG1"
+        print("(X, Y)=({}, {}) Width={} Height={}".format(
+            pixy.value(1), pixy.value(2), pixy.value(3),
+            pixy.value(4)))
+
+
 
     def loop_forever(self):
         self.robot.loop_forever()
