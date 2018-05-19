@@ -34,17 +34,10 @@ class Robot(object):
 
 
 
-    def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
-        self.forward(left_speed_entry, right_speed_entry)
-        while True:
-            self.pixy.mode = ""
-
-
-
-
-
-
-
+    # def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
+    #     self.forward(left_speed_entry, right_speed_entry)
+    #     while True:
+    #         self.pixy.mode = ""
 
 
 
