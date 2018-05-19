@@ -42,6 +42,10 @@ def main():
     hands_up_button.grid(row=1, column=4)
     hands_up_button['command'] = lambda: send_hands_up(mqtt_client)
 
+    arm_down_button = ttk.Button(main_frame, text="Arm Down")
+    arm_down_button.grid(row=2, column=0)
+    arm_down_button['command'] = lambda: send_arm_down(mqtt_client)
+
     display_location = ttk.Label(main_frame, text="Waiting...")
     display_location.grid(row=2, column=2)
 
@@ -74,6 +78,10 @@ def send_silento(mqtt_client):
 
 def send_hands_up(mqtt_client):
     mqtt_client.send_message('hands_up')
+
+
+def send_arm_down(mqtt_client):
+    mqtt_client.send_message('arm_down')
 
 
 def send_exit(mqtt_client):
