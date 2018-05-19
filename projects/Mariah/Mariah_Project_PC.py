@@ -21,7 +21,7 @@ import mqtt_remote_method_calls as com
 
 
 def main():
-    # cd = Computer_Delegate(location)
+
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
 
@@ -104,13 +104,13 @@ def main():
     down_button['command'] = lambda: send_down(mqtt_client)
     root.bind('<j>', lambda event: send_down(mqtt_client))
 
+    q_button = ttk.Button(main_frame, text="Quit")
+    q_button.grid(row=5, column=2)
+    q_button['command'] = (lambda: quit_program(mqtt_client, False))
+
     e_button = ttk.Button(main_frame, text="Exit")
     e_button.grid(row=6, column=2)
-    e_button['command'] = (lambda: send_exit(mqtt_client)
-
-    # cd = Computer_Delegate(location)
-    # mqtt_client = com.MqttClient(cd)
-    # mqtt_client.connect_to_ev3()
+    e_button['command'] = (lambda: quit_program(mqtt_client, True))
 
     root.mainloop()
 
@@ -145,7 +145,7 @@ def send_back(mqtt_client, left_speed_entry, right_speed_entry):
     mqtt_client.send_message("backward", [int(left_speed_entry.get()),
                                           int(right_speed_entry.get())])
 
-    
+
 def send_up(mqtt_client):
     print("arm_up")
     mqtt_client.send_message("arm_up")
@@ -158,6 +158,13 @@ def send_down(mqtt_client):
 
 def send_exit(mqtt_client):
     mqtt_client.send_message('exit')
+    mqtt_client.close()
+    exit()
+
+def quit_program(mqtt_client, shutdown_ev3):
+    if shutdown_ev3:
+        print("shutdown")
+        mqtt_client.send_message("shutdown")
     mqtt_client.close()
     exit()
 
