@@ -58,13 +58,13 @@ class Robot(object):
         self.robot.pixy.mode = "SIG2"
         while True:
             if self.robot.pixy.value(1) > 140 and self.robot.pixy.value(1) < 160:
-                self.robot.forward(400, 400)
-                time.sleep(3)
+                self.robot.forward(600, 600)
+                time.sleep(4)
                 self.robot.stop()
                 break
             else:
                 self.robot.spin_left_degrees(5)
-            time.sleep(1)
+            time.sleep(0.5)
 
 
 def main():
