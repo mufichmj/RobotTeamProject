@@ -53,6 +53,10 @@ def main():
     exit_button.grid(row=2, column=4)
     exit_button['command'] = lambda: send_exit(mqtt_client)
 
+    pc_delegate = ComputerDelegate(display_location)
+    mqtt_client = com.MqttClient(pc_delegate)
+    mqtt_client.connect_to_ev3()
+
     root.mainloop()
 
 
