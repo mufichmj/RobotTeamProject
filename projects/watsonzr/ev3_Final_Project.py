@@ -84,6 +84,15 @@ class RobotDelegate(object):
         time.sleep(0.5)
         self.robot.stop()
 
+    def hammer_time(self):
+        self.robot.play_string('hammer_time')
+        time.sleep(4)
+        self.robot.left(300, 300)
+        time.sleep(1.5)
+        self.robot.right(300, 300)
+        time.sleep(1.5)
+        self.robot.stop()
+
     def arm_down(self):
         self.robot.arm_down()
 
@@ -101,9 +110,15 @@ def main():
     rd.robot.remote1.on_blue_up = lambda state: handle_blue_up(state, rd, mqtt_client)
     rd.robot.remote1.on_blue_down = lambda state: handle_blue_down(state, rd, mqtt_client)
 
+    rd.robot.pixy.mode = 'SIG5'
+
     rd.robot.running = True
     while rd.robot.running:
         rd.robot.remote1.process()
+        if rd.robot.pixy.value(1) > 0:
+            rd.robot.stop()
+            rd.hammer_time()
+            time.sleep(1)
         time.sleep(0.05)
 
 
