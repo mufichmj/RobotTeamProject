@@ -48,6 +48,12 @@ class Robot(object):
     def arm_down(self):
         self.robot.arm_down()
 
+    def stop(self):
+        self.robot.stop()
+
+    def shutdown(self):
+        self.robot.shutdown()
+
     def shoot_soccer_ball(self):
         for k in range(10):
             self.robot.pixy.mode = "SIG2"
