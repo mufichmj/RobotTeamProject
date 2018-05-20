@@ -59,12 +59,12 @@ class Robot(object):
         while True:
             if self.robot.pixy.value(1) > 140 and self.robot.pixy.value(1) < 160:
                 self.robot.forward(600, 600)
-                time.sleep(4)
+                time.sleep(6)
                 self.robot.stop()
                 break
             else:
                 self.robot.spin_left_degrees(5)
-            time.sleep(0.5)
+            time.sleep(0.1)
 
 
 def main():
