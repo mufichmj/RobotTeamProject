@@ -120,7 +120,7 @@ def send_shoot(mqtt_client):
 def send_left(mqtt_client, left_speed_entry, right_speed_entry):
     print("left")
     mqtt_client.send_message("left", [-int(left_speed_entry.get()),
-                                               int(right_speed_entry.get())])
+                                        int(right_speed_entry.get())])
 
 
 def send_right(mqtt_client, left_speed_entry, right_speed_entry):
