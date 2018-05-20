@@ -10,6 +10,12 @@ class ComputerDelegate(object):
     def __init__(self, location_to_display):
         self.place_to_display = location_to_display
 
+    def wait(self):
+        self.place_to_display.configure(text='Controller in use, do not dance')
+
+    def resume(self):
+        self.place_to_display.configure(text='You may resume dancing!')
+
 
 def main():
 
@@ -46,7 +52,7 @@ def main():
     arm_down_button.grid(row=2, column=0)
     arm_down_button['command'] = lambda: send_arm_down(mqtt_client)
 
-    display_location = ttk.Label(main_frame, text="Waiting...")
+    display_location = ttk.Label(main_frame, text="Welcome!")
     display_location.grid(row=2, column=2)
 
     exit_button = ttk.Button(main_frame, text="Exit")
