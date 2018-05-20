@@ -55,12 +55,16 @@ class Robot(object):
         self.robot.shutdown()
 
     def shoot_soccer_ball(self):
-        for k in range(10):
-            self.robot.pixy.mode = "SIG2"
-            print("(X, Y)=({}, {}) Width={} Height={}".format(
-                self.robot.pixy.value(1), self.robot.pixy.value(2), self.robot.pixy.value(3),
-                self.robot.pixy.value(4)))
-            time.sleep(1)
+        self.robot.pixy.mode = "SIG2"
+        while True:
+            if self.robot.pixy.value(1) > 140 and self.robot.pixy.value(1) < 160:
+                self.robot.forward(400, 400)
+                time.sleep(3)
+                self.robot.stop()
+                break
+            else:
+                self.robot.spin_left_degrees(5).wait()
+            time.sleep(0.5)
 
 
 def main():
