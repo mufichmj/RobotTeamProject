@@ -48,8 +48,7 @@ class Robot(object):
     def arm_down(self):
         self.robot.arm_down()
 
-    def shoot_soccer_ball(self, left_speed_entry, right_speed_entry):
-        print(left_speed_entry, right_speed_entry)
+    def shoot_soccer_ball(self):
         for k in range(10):
             self.robot.pixy.mode = "SIG2"
             print("(X, Y)=({}, {}) Width={} Height={}".format(
