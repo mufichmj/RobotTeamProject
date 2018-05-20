@@ -137,8 +137,8 @@ def send_forward(mqtt_client, left_speed_entry, right_speed_entry):
 
 def send_back(mqtt_client, left_speed_entry, right_speed_entry):
     print("backward")
-    mqtt_client.send_message("backward", [int(left_speed_entry.get()),
-                                          int(right_speed_entry.get())])
+    mqtt_client.send_message("backward", [-int(left_speed_entry.get()),
+                                          -int(right_speed_entry.get())])
 
 
 def send_up(mqtt_client):
