@@ -158,5 +158,4 @@ def handle_blue_down(state, rd, mqtt):
         mqtt.send_message('resume')
 
 
-
 main()
