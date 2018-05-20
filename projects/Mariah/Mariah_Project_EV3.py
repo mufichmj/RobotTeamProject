@@ -59,7 +59,7 @@ class Robot(object):
         while True:
             if self.robot.pixy.value(1) > 140 and self.robot.pixy.value(1) < 160:
                 self.robot.forward(600, 600)
-                time.sleep(6)
+                time.sleep(9)
                 self.robot.stop()
                 break
             else:
