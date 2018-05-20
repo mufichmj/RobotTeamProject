@@ -63,8 +63,8 @@ class Robot(object):
                 self.robot.stop()
                 break
             else:
-                self.robot.spin_left_degrees(5).wait()
-            time.sleep(0.5)
+                self.robot.spin_left_degrees(5)
+            time.sleep(1)
 
 
 def main():
