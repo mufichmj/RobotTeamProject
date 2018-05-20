@@ -15,6 +15,7 @@ class RobotDelegate(object):
 
     def moonwalk(self):
         self.robot.play_string('moonwalking')
+        time.sleep(1)
         self.robot.left_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
         self.robot.stop()
@@ -31,6 +32,7 @@ class RobotDelegate(object):
 
     def waltz(self):
         self.robot.play_string('waltzing')
+        time.sleep(1)
         for _ in range(3):
             self.robot.left_motor.run_forever(speed_sp=400)
             time.sleep(0.75)
@@ -53,6 +55,7 @@ class RobotDelegate(object):
 
     def square_dance(self):
         self.robot.play_string('square')
+        time.sleep(1)
         for _ in range(4):
             self.robot.forward(500, 500)
             time.sleep(3)
@@ -61,6 +64,7 @@ class RobotDelegate(object):
 
     def whip_nae_nae(self):
         self.robot.play_string('silento')
+        time.sleep(1)
         self.robot.left(500, 500)
         time.sleep(0.5)
         self.robot.stop()
@@ -75,7 +79,13 @@ class RobotDelegate(object):
 
     def hands_up(self):
         self.robot.play_string('hands_up')
+        time.sleep(1)
         self.robot.arm_up()
+        self.robot.backward(400, 200)
+        time.sleep(0.5)
+        self.robot.backward(200, 400)
+        time.sleep(0.5)
+        self.robot.stop()
 
     def arm_down(self):
         self.robot.arm_down()
