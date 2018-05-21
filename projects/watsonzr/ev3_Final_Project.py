@@ -119,7 +119,7 @@ def main():
             rd.robot.stop()
             rd.hammer_time()
             time.sleep(1)
-        time.sleep(0.05)
+        time.sleep(0.01)
 
 
 def handle_red_up(state, rd, mqtt):
