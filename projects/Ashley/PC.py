@@ -5,22 +5,23 @@ import mqtt_remote_method_calls as com
 
 
 class PicToLaptop(object):
+
+    def __init__(self):
+        pass
+
     def bone(self):
         """Makes a tkinter window that shows a bone when the robot has done its trick. It acts as button, and when
         pressed it prints a message from the python console"""
         root = tkinter.Toplevel()
-
-        photo = tkinter.PhotoImage(file='dog_treats')
-
-        button = ttk.Button(root, image=photo)
-
+        button = ttk.Button(root)
+        photo = tkinter.PhotoImage(file='C:/Users/shepheam/RobotTeamProject/assets/images/dog_treats.gif')
         button.image = photo
         button.grid()
         button['command'] = lambda: print('Good boy!')
 
 
 def main():
-    ev3tocomp = PicToLaptop
+    ev3tocomp = PicToLaptop()
     mqtt_client = com.MqttClient(ev3tocomp)
     mqtt_client.connect_to_ev3()
     root = tkinter.Tk()
