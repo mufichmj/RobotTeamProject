@@ -136,3 +136,7 @@ class Snatch3r(object):
     def arm_down(self):
         if self.touch_sensor.is_pressed:
             self.arm_motor.run_to_rel_pos(position_sp=-14.3*360, speed_sp=900, stop_action='brake')
+
+    def play_string(self, song):
+        string = "/home/robot/csse120/assets/sounds/" + song + ".wav"
+        ev3.Sound.play(string)

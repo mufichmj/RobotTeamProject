@@ -1,6 +1,5 @@
 # Zack Watson Final Project for ev3
 
-import ev3dev as ev3
 import robot_controller as robo
 import time
 import mqtt_remote_method_calls as com
@@ -11,11 +10,9 @@ class RobotDelegate(object):
     def __init__(self):
         self.robot = robo.Snatch3r()
 
-    def loop_forever(self):
-        self.robot.loop_forever()
-
     def moonwalk(self):
-        send_pc_message('Moonwalking!')
+        self.robot.play_string('moonwalking')
+        time.sleep(1)
         self.robot.left_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
         self.robot.stop()
@@ -29,10 +26,10 @@ class RobotDelegate(object):
         self.robot.right_motor.run_forever(speed_sp=-900)
         time.sleep(0.25)
         self.robot.stop()
-        send_pc_message('Waiting...')
 
     def waltz(self):
-        send_pc_message('Waltzing!')
+        self.robot.play_string('waltzing')
+        time.sleep(3)
         for _ in range(3):
             self.robot.left_motor.run_forever(speed_sp=400)
             time.sleep(0.75)
@@ -52,19 +49,19 @@ class RobotDelegate(object):
             self.robot.right_motor.run_forever(speed_sp=-400)
             time.sleep(0.5)
             self.robot.stop()
-        send_pc_message('Waiting...')
 
     def square_dance(self):
-        send_pc_message('Do Si Do-ing!')
+        self.robot.play_string('square')
+        time.sleep(2)
         for _ in range(4):
             self.robot.forward(500, 500)
             time.sleep(3)
             self.robot.stop()
             self.robot.turn_left_degrees(90)
-        send_pc_message('Waiting...')
 
     def whip_nae_nae(self):
-        send_pc_message('Watch Me!')
+        self.robot.play_string('silento')
+        time.sleep(2)
         self.robot.left(500, 500)
         time.sleep(0.5)
         self.robot.stop()
@@ -76,12 +73,25 @@ class RobotDelegate(object):
         time.sleep(0.5)
         self.robot.stop()
         self.robot.arm_up()
-        send_pc_message('Waiting...')
 
     def hands_up(self):
-        send_pc_message('HANDS UP!')
+        self.robot.play_string('hands_up')
+        time.sleep(1)
         self.robot.arm_up()
-        send_pc_message('Waiting...')
+        self.robot.backward(400, 200)
+        time.sleep(0.5)
+        self.robot.backward(200, 400)
+        time.sleep(0.5)
+        self.robot.stop()
+
+    def hammer_time(self):
+        self.robot.play_string('hammer_time')
+        time.sleep(4)
+        self.robot.left(300, 300)
+        time.sleep(1.5)
+        self.robot.right(300, 300)
+        time.sleep(1.5)
+        self.robot.stop()
 
     def arm_down(self):
         self.robot.arm_down()
@@ -94,11 +104,58 @@ def main():
     rd = RobotDelegate()
     mqtt_client = com.MqttClient(rd)
     mqtt_client.connect_to_pc()
-    rd.loop_forever()
+
+    rd.robot.remote1.on_red_up = lambda state: handle_red_up(state, rd, mqtt_client)
+    rd.robot.remote1.on_red_down = lambda state: handle_red_down(state, rd, mqtt_client)
+    rd.robot.remote1.on_blue_up = lambda state: handle_blue_up(state, rd, mqtt_client)
+    rd.robot.remote1.on_blue_down = lambda state: handle_blue_down(state, rd, mqtt_client)
+
+    rd.robot.pixy.mode = 'SIG3'
+
+    rd.robot.running = True
+    while rd.robot.running:
+        rd.robot.remote1.process()
+        if rd.robot.pixy.value(1) > 0:
+            rd.robot.stop()
+            rd.hammer_time()
+            time.sleep(1)
+        time.sleep(0.01)
 
 
-def send_pc_message(string):
-    mqtt_client.send_message("display_message", [string])
+def handle_red_up(state, rd, mqtt):
+    if state:
+        mqtt.send_message('wait')
+        rd.robot.left_motor.run_forever(speed_sp=900)
+    else:
+        rd.robot.stop()
+        mqtt.send_message('resume')
+
+
+def handle_red_down(state, rd, mqtt):
+    if state:
+        mqtt.send_message('wait')
+        rd.robot.left_motor.run_forever(speed_sp=-900)
+    else:
+        rd.robot.stop()
+        mqtt.send_message('resume')
+
+
+def handle_blue_up(state, rd, mqtt):
+    if state:
+        mqtt.send_message('wait')
+        rd.robot.right_motor.run_forever(speed_sp=900)
+    else:
+        rd.robot.stop()
+        mqtt.send_message('resume')
+
+
+def handle_blue_down(state, rd, mqtt):
+    if state:
+        mqtt.send_message('wait')
+        rd.robot.right_motor.run_forever(speed_sp=-900)
+    else:
+        rd.robot.stop()
+        mqtt.send_message('resume')
 
 
 main()
