@@ -14,19 +14,19 @@ class Robot(object):
     def go_through_cones(self, number_cones):
         for k in range(number_cones):
             self.robot.forward(400, 400)
-            time.sleep(4)
+            time.sleep(6)
             self.robot.stop()
             self.robot.spin_left_degrees(90)
             self.robot.forward(400, 400)
-            time.sleep(4)
+            time.sleep(6)
             self.robot.stop()
             self.robot.spin_right_degrees(90)
             self.robot.forward(400, 400)
-            time.sleep(4)
+            time.sleep(6)
             self.robot.stop()
             self.robot.spin_right_degrees(90)
             self.robot.forward(400, 400)
-            time.sleep(4)
+            time.sleep(6)
             self.robot.stop()
             self.robot.spin_left_degrees(90)
 
