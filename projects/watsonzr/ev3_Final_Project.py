@@ -110,7 +110,7 @@ def main():
     rd.robot.remote1.on_blue_up = lambda state: handle_blue_up(state, rd, mqtt_client)
     rd.robot.remote1.on_blue_down = lambda state: handle_blue_down(state, rd, mqtt_client)
 
-    rd.robot.pixy.mode = 'SIG5'
+    rd.robot.pixy.mode = 'SIG3'
 
     rd.robot.running = True
     while rd.robot.running:
