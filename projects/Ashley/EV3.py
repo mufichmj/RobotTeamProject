@@ -8,6 +8,7 @@ class Dog(object):
 
     def __init__(self):
         self.robot = robo.Snatch3r()
+        self.trick = False
 
     def doggo_stop(self):
         print("doggo stop")
@@ -25,25 +26,34 @@ class Dog(object):
         while True:
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_GREEN:
                 ev3.Sound.speak("Bork Bork Bork").wait()
+                self.trick = True
+                time.sleep(3)
+                self.trick = False
                 break
 
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_BLACK:
                 self.robot.spin_left_degrees(90, 100, 'brake')
+                self.trick = True
+                time.sleep(3)
+                self.trick = False
                 break
 
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_YELLOW:
                 self.robot.spin_right_degrees(90, 100, 'brake')
+                self.trick = True
+                time.sleep(3)
+                self.trick = False
                 break
 
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_RED:
                 self.robot.arm_up()
                 self.robot.arm_down()
+                self.trick = True
+                time.sleep(3)
+                self.trick = False
                 break
 
-    def listening_to_my_owner(self):
-        while True:
-            time.sleep(.05)
-            # makes it run continuously
+
 
 
 def main():
@@ -52,16 +62,8 @@ def main():
     mqtt_client = com.MqttClient(elon)
     mqtt_client.connect_to_pc()
 
-    if elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_GREEN:
-        mqtt_client.send_message('bone')
-    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_BLACK:
+    while True:
+        time.sleep(.05)
+        if elon.trick == True:
             mqtt_client.send_message('bone')
-    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_YELLOW:
-        mqtt_client.send_message('bone')
-    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_RED:
-        mqtt_client.send_message('bone')
-
-    elon.listening_to_my_owner()
-
-
 main()
