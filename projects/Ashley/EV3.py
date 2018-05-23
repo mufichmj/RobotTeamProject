@@ -17,25 +17,24 @@ class Dog(object):
         print("zoom forward")
         self.robot.forward(left, right)
 
+    def doggo_bark(self):
+        print("doggo barking")
+        ev3.Sound.speak("Bork Bork Bork").wait()
+
     def check_color(self):
         while True:
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_GREEN:
                 ev3.Sound.speak("Bork Bork Bork").wait()
-                self.mqtt_client.send_message("bone")
-                self.robot.stop()
 
-            if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_BLUE:
+            if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_BLACK:
                 self.robot.spin_left_degrees(90, 100, 'brake')
-                self.send_message("bone")
 
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_YELLOW:
                 self.robot.spin_right_degrees(90, 100, 'brake')
-                self.send_message("bone")
 
             if self.robot.color_sensor.color == ev3.ColorSensor.COLOR_RED:
                 self.robot.arm_up()
                 self.robot.arm_down()
-                self.send_message("bone")
 
     def listening_to_my_owner(self):
         while True:
@@ -49,9 +48,16 @@ def main():
     mqtt_client = com.MqttClient(elon)
     mqtt_client.connect_to_pc()
 
-    elon.listening_to_my_owner()
+    if elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_GREEN:
+        mqtt_client.send_message('bone')
+    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_BLACK:
+            mqtt_client.send_message('bone')
+    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_YELLOW:
+        mqtt_client.send_message('bone')
+    elif elon.robot.color_sensor.color == ev3.ColorSensor.COLOR_RED:
+        mqtt_client.send_message('bone')
 
-    # is there anything I need to add to the ev3??
+    elon.listening_to_my_owner()
 
 
 main()

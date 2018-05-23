@@ -10,7 +10,7 @@ class PicToLaptop(object):
         pressed it prints a message from the python console"""
         root = tkinter.Toplevel()
 
-        photo = tkinter.PhotoImage(file='dog treat')
+        photo = tkinter.PhotoImage(file='dog_treats')
 
         button = ttk.Button(root, image=photo)
 
@@ -53,10 +53,10 @@ def main():
     doggo_stop_button['command'] = lambda: send_doggo_stop(mqtt_client)
     root.bind('<space>', lambda event: send_doggo_stop(mqtt_client))
 
-    doggo_check_color = ttk.Button(main_frame, text="Checking color")
-    doggo_stop_button.grid(row=6, column=2)
-    doggo_stop_button['command'] = lambda: doggo_look_at_color(mqtt_client)
-    root.bind('<down>', lambda event: doggo_look_at_color(mqtt_client))
+    doggo_bark_button = ttk.Button(main_frame, text="Barking loud!")
+    doggo_bark_button.grid(row=5, column=1)
+    doggo_bark_button['command'] = lambda: doggo_bark(mqtt_client)
+    root.bind('<Down>', lambda event: doggo_bark(mqtt_client))
 
     q_button = ttk.Button(main_frame, text="Quit")
     q_button.grid(row=5, column=2)
@@ -64,12 +64,12 @@ def main():
     root.bind('<q>', lambda event: quit_program(mqtt_client, False))
 
     bye_hooman_button = ttk.Button(main_frame, text="Bye")
-    bye_hooman_button.grid(row=6, column=2)
+    bye_hooman_button.grid(row=6, column=1)
     bye_hooman_button['command'] = (lambda: quit_program(mqtt_client, True))
     root.bind('<e>', lambda event: quit_program(mqtt_client, True))
 
     check_color_button = ttk.Button(main_frame, text="Checking color")
-    check_color_button.grid(row=4, column=2)
+    check_color_button.grid(row=4, column=1)
     check_color_button['command'] = (lambda: doggo_look_at_color(mqtt_client))
     root.bind('<c>', lambda event: doggo_look_at_color(mqtt_client))
 
@@ -83,6 +83,10 @@ def send_doggo_forward(mqtt_client, doggo_left_speed_entry, doggo_right_speed_en
     left_speed = doggo_left_speed_entry.get()
     right_speed = doggo_right_speed_entry.get()
     mqtt_client.send_message("zoom_forward", [int(left_speed), int(right_speed)])
+
+def doggo_bark(mqtt_client):
+    print("doggo bark")
+    mqtt_client.send_message("doggo_bark")
 
 
 def send_doggo_stop(mqtt_client):
